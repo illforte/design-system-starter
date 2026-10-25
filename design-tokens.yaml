@@ -1,0 +1,937 @@
+# Design Tokens — 4 Personalities, 1 Foundation
+# Source of Truth für dein Design-System
+# Usage: Import in Tailwind, CSS, Figma, Code
+
+tokens:
+  # ═══════════════════════════════════════════
+  # FOUNDATION (shared across all themes)
+  # ═══════════════════════════════════════════
+  foundation:
+    spacing:
+      base: 4  # 4px base unit
+      scale: [0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24]  # multiples of base
+      # 0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96px
+    radius:
+      none: 0
+      sm: 4      # badges, tags
+      md: 8      # inputs, buttons
+      lg: 12     # cards
+      xl: 16     # featured cards
+      2xl: 24    # hero sections
+      full: 9999 # pills, avatars
+      # Theme-specific overrides in themes.<name>.radius
+    shadows:
+      none: "none"
+      sm: "0 1px 2px rgba(0,0,0,0.05)"
+      md: "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)"
+      lg: "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)"
+      xl: "0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)"
+      inner: "inset 0 2px 4px rgba(0,0,0,0.05)"
+      focus: "0 0 0 3px {color.primary.500} / 0.4"
+    transitions:
+      fast: "100ms ease-out"
+      normal: "200ms ease-out"
+      slow: "300ms ease-out"
+      spring: "300ms cubic-bezier(0.34, 1.56, 0.64, 1)"
+    breakpoints:
+      sm: 640
+      md: 768
+      lg: 1024
+      xl: 1280
+      2xl: 1536
+    container:
+      maxWidth: 1280
+      padding:
+        mobile: 16
+        tablet: 24
+        desktop: 32
+
+  # ═══════════════════════════════════════════
+  # TYPOGRAPHY SCALE (shared, theme overrides font families)
+  # ═══════════════════════════════════════════
+  typography:
+    scaleRatio: 1.25  # Major Third
+    sizes:
+      xs: 12      # 0.75rem
+      sm: 14      # 0.875rem
+      base: 16    # 1rem — NEVER below 16px for body
+      lg: 18      # 1.125rem
+      xl: 20      # 1.25rem
+      2xl: 24     # 1.5rem
+      3xl: 30     # 1.875rem
+      4xl: 36     # 2.25rem
+      5xl: 48     # 3rem
+      6xl: 60     # 3.75rem
+    lineHeights:
+      tight: 1.15      # Headlines
+      snug: 1.25       # Subheads
+      normal: 1.5      # Body (minimum)
+      relaxed: 1.625   # Long-form
+      loose: 1.75      # Hero
+    fontWeights:
+      light: 300
+      normal: 400
+      medium: 500
+      semibold: 600
+      bold: 700
+      extrabold: 800
+    letterSpacing:
+      tight: "-0.02em"
+      normal: "0"
+      wide: "0.02em"
+      wider: "0.04em"
+      widest: "0.08em"
+
+  # ═══════════════════════════════════════════
+  # SEMANTIC COLOR ROLES (shared structure)
+  # ═══════════════════════════════════════════
+  semanticRoles:
+    primary: "Primary brand actions, links, focus states"
+    secondary: "Secondary actions, less emphasis"
+    accent: "Highlights, decorative elements"
+    success: "Positive states, confirmations"
+    warning: "Caution, pending states"
+    error: "Errors, destructive actions"
+    info: "Informational, tips"
+    background: "Page background"
+    surface: "Card/panel background"
+    surfaceRaised: "Elevated surfaces (modals, dropdowns)"
+    border: "Borders, dividers"
+    borderStrong: "Strong borders (focus, active)"
+    textPrimary: "Main body text, headings"
+    textSecondary: "Metadata, captions, less important"
+    textMuted: "Placeholder, disabled, subtle"
+    textInverse: "Text on dark/colored backgrounds"
+    textLink: "Link text"
+    overlay: "Modal backdrops"
+
+  # ═══════════════════════════════════════════
+  # THEME 1: EDITORIAL LUXURY (isabell-beer.com)
+  # High-end, emotional, video-first, conversion-optimized
+  # ═══════════════════════════════════════════
+  themes:
+    editorial-luxury:
+      name: "Editorial Luxury"
+      description: "High-end, magazinartig, emotional, video-first — für Premium-Dienstleistungen"
+      personality: ["elegant", "emotional", "premium", "aspirational"]
+      bestFor: ["Hochzeitssänger:innen Premium", "Event-Agenturen", "Luxus-Dienstleistungen", "Personal Brands"]
+      
+      fonts:
+        heading: "Playfair Display, serif"          # Editorial serif
+        body: "DM Sans, sans-serif"                 # Clean modern sans
+        accent: "Playfair Display, serif"           # Pull quotes, numbers
+        mono: "JetBrains Mono, monospace"
+      
+      # Color palette — Dusty Rose / Terracotta / Cream
+      color:
+        primitive:
+          # Dusty Rose scale
+          rose:
+            50: "#fdf2f3"
+            100: "#fce7e9"
+            200: "#f8cfd3"
+            300: "#f1a6b0"
+            400: "#e6788a"
+            500: "#d9526a"    # PRIMARY
+            600: "#c43d54"
+            700: "#a33044"
+            800: "#872b3a"
+            900: "#712632"
+            950: "#3d0f16"
+          # Terracotta scale
+          terracotta:
+            50: "#fdf8f5"
+            100: "#faefe8"
+            200: "#f3dad3"
+            300: "#e7bfa1"
+            400: "#d8956b"
+            500: "#c97543"
+            600: "#b85e32"
+            700: "#96492a"
+            800: "#793e28"
+            900: "#633524"
+            950: "#341a11"
+          # Cream/Warm neutrals
+          cream:
+            50: "#fefef9"
+            100: "#fdfbf0"
+            200: "#f9f3db"
+            300: "#f3e7b8"
+            400: "#ebd788"
+            500: "#e2c358"
+            600: "#c9a53f"
+            700: "#a38133"
+            800: "#85672e"
+            900: "#6d552a"
+            950: "#3a2d13"
+          # Warm grays
+          stone:
+            50: "#fafaf9"
+            100: "#f5f5f4"
+            200: "#e7e5e4"
+            300: "#d6d3d1"
+            400: "#a8a29e"
+            500: "#78716c"
+            600: "#57534e"
+            700: "#44403c"
+            800: "#292524"
+            900: "#1c1917"
+            950: "#0c0a09"
+        
+        semantic:
+          primary: "{color.primitive.rose.500}"
+          primaryHover: "{color.primitive.rose.600}"
+          primaryLight: "{color.primitive.rose.100}"
+          primaryDark: "{color.primitive.rose.700}"
+          
+          secondary: "{color.primitive.terracotta.500}"
+          secondaryHover: "{color.primitive.terracotta.600}"
+          secondaryLight: "{color.primitive.terracotta.100}"
+          
+          accent: "{color.primitive.cream.500}"
+          accentHover: "{color.primitive.cream.600}"
+          
+          success: "#16a34a"      # Green-600
+          warning: "#ca8a04"      # Yellow-600
+          error: "#dc2626"        # Red-600
+          info: "#2563eb"         # Blue-600
+          
+          background: "{color.primitive.cream.50}"
+          surface: "#ffffff"
+          surfaceRaised: "#ffffff"
+          
+          border: "{color.primitive.stone.200}"
+          borderStrong: "{color.primitive.stone.300}"
+          
+          textPrimary: "{color.primitive.stone.900}"
+          textSecondary: "{color.primitive.stone.600}"
+          textMuted: "{color.primitive.stone.400}"
+          textInverse: "#ffffff"
+          textLink: "{color.primitive.rose.600}"
+          
+          overlay: "rgba(28, 25, 23, 0.6)"
+      
+      radius:
+        sm: 6
+        md: 10
+        lg: 16
+        xl: 24
+        2xl: 32
+        # Softer, more organic
+      
+      shadows:
+        sm: "0 1px 3px rgba(141, 48, 68, 0.08)"
+        md: "0 4px 12px rgba(141, 48, 68, 0.1), 0 2px 4px rgba(141, 48, 68, 0.06)"
+        lg: "0 12px 28px rgba(141, 48, 68, 0.12), 0 4px 8px rgba(141, 48, 68, 0.08)"
+        xl: "0 24px 48px rgba(141, 48, 68, 0.15), 0 8px 16px rgba(141, 48, 68, 0.1)"
+      
+      # Theme-specific component variants
+      components:
+        button:
+          primary:
+            padding: "14px 32px"
+            fontWeight: 500
+            letterSpacing: "0.02em"
+            textTransform: "none"
+          secondary:
+            borderWidth: 2
+            padding: "12px 30px"
+          ghost:
+            padding: "12px 24px"
+        card:
+          padding: 32
+          borderWidth: 1
+          imageRadius: 24
+        hero:
+          minHeight: "90vh"
+          paddingTop: 120
+          paddingBottom: 80
+        nav:
+          height: 80
+          backdropBlur: true
+          borderBottom: "1px solid {color.primitive.stone.100}"
+
+    # ═══════════════════════════════════════════
+    # THEME 2: WARM APPROACHABLE (anni-singt.de)
+    # Friendly, personal, trust-building, practical
+    # ═══════════════════════════════════════════
+    warm-approachable:
+      name: "Warm & Approachable"
+      description: "Persönlich, vertrauensvoll, klar strukturiert — für lokale Dienstleister, Beratung, Handwerk"
+      personality: ["friendly", "trustworthy", "clear", "human"]
+      bestFor: ["Hochzeitssänger:innen lokal", "Berater:innen", "Coaches", "Handwerk", "Praxis-Websites"]
+      
+      fonts:
+        heading: "Plus Jakarta Sans, sans-serif"   # Friendly geometric
+        body: "DM Sans, sans-serif"               # Readable, warm
+        accent: "Plus Jakarta Sans, sans-serif"
+        mono: "JetBrains Mono, monospace"
+      
+      color:
+        primitive:
+          # Peach/Warm coral scale
+          peach:
+            50: "#fff7f2"
+            100: "#ffede3"
+            200: "#ffdcc7"
+            300: "#ffc199"
+            400: "#ff9d63"
+            500: "#ff7a3a"    # PRIMARY
+            600: "#f06022"
+            700: "#d84b1a"
+            800: "#b53d1a"
+            900: "#93331d"
+            950: "#51170c"
+          # Sage green
+          sage:
+            50: "#f6faf6"
+            100: "#ebf5eb"
+            200: "#d6ead7"
+            300: "#b5dab6"
+            400: "#8ac490"
+            500: "#65a96d"    # SECONDARY
+            600: "#4d9054"
+            700: "#3f7445"
+            800: "#36603b"
+            900: "#305034"
+            950: "#1a2d1d"
+          # Warm white/cream
+          warmWhite:
+            50: "#fefefd"
+            100: "#fdfcf8"
+            200: "#faf7ec"
+            300: "#f4efd4"
+            400: "#ebe2a8"
+            500: "#e0d374"
+            600: "#c4b552"
+            700: "#9e913f"
+            800: "#807535"
+            900: "#695f30"
+            950: "#383017"
+          # Warm grays
+          taupe:
+            50: "#faf9f7"
+            100: "#f3f1ed"
+            200: "#e5e1db"
+            300: "#d2ccc3"
+            400: "#b8b0a4"
+            500: "#a09789"
+            600: "#867e71"
+            700: "#6e665c"
+            800: "#5c554c"
+            900: "#4d473f"
+            950: "#28251f"
+        
+        semantic:
+          primary: "{color.primitive.peach.500}"
+          primaryHover: "{color.primitive.peach.600}"
+          primaryLight: "{color.primitive.peach.100}"
+          primaryDark: "{color.primitive.peach.700}"
+          
+          secondary: "{color.primitive.sage.500}"
+          secondaryHover: "{color.primitive.sage.600}"
+          secondaryLight: "{color.primitive.sage.100}"
+          
+          accent: "{color.primitive.warmWhite.500}"
+          accentHover: "{color.primitive.warmWhite.600}"
+          
+          success: "#16a34a"
+          warning: "#ca8a04"
+          error: "#dc2626"
+          info: "#2563eb"
+          
+          background: "{color.primitive.warmWhite.50}"
+          surface: "#ffffff"
+          surfaceRaised: "#ffffff"
+          
+          border: "{color.primitive.taupe.200}"
+          borderStrong: "{color.primitive.taupe.300}"
+          
+          textPrimary: "{color.primitive.taupe.900}"
+          textSecondary: "{color.primitive.taupe.600}"
+          textMuted: "{color.primitive.taupe.400}"
+          textInverse: "#ffffff"
+          textLink: "{color.primitive.peach.600}"
+          
+          overlay: "rgba(40, 37, 31, 0.6)"
+      
+      radius:
+        sm: 8
+        md: 12
+        lg: 16
+        xl: 20
+        2xl: 28
+        # Friendly, rounded
+      
+      shadows:
+        sm: "0 1px 3px rgba(138, 57, 26, 0.08)"
+        md: "0 4px 12px rgba(138, 57, 26, 0.1), 0 2px 4px rgba(138, 57, 26, 0.06)"
+        lg: "0 12px 24px rgba(138, 57, 26, 0.12), 0 4px 8px rgba(138, 57, 26, 0.08)"
+        xl: "0 20px 40px rgba(138, 57, 26, 0.15), 0 8px 16px rgba(138, 57, 26, 0.1)"
+      
+      components:
+        button:
+          primary:
+            padding: "14px 28px"
+            fontWeight: 600
+            letterSpacing: "0"
+            textTransform: "none"
+          secondary:
+            borderWidth: 2
+            padding: "12px 26px"
+          ghost:
+            padding: "12px 20px"
+        card:
+          padding: 24
+          borderWidth: 1
+          imageRadius: 16
+        hero:
+          minHeight: "80vh"
+          paddingTop: 100
+          paddingBottom: 60
+        nav:
+          height: 72
+          backdropBlur: false
+          borderBottom: "1px solid {color.primitive.taupe.100}"
+
+    # ═══════════════════════════════════════════
+    # THEME 3: ORGANIC SOFT (sitashakti-music.de)
+    # Natural, flowing, not boxy, wellness/yoga crossover
+    # ═══════════════════════════════════════════
+    organic-soft:
+      name: "Organic & Soft"
+      description: "Natürlich, fließend, nicht viereckig — für Wellness, Yoga, ganzheitliche Angebote, Akustik-Musik"
+      personality: ["natural", "flowing", "grounded", "nurturing"]
+      bestFor: ["Yoga/Meditation", "Ganzheitliche Gesundheit", "Akustik-Musik", "Natur-Produkte", "Coaching"]
+      
+      fonts:
+        heading: "Satoshi, sans-serif"             # Warm geometric, variable
+        body: "Source Serif Pro, serif"           # Humanist serif for reading
+        accent: "Satoshi, sans-serif"
+        mono: "JetBrains Mono, monospace"
+      
+      color:
+        primitive:
+          # Terracotta/Clay
+          clay:
+            50: "#fdf7f3"
+            100: "#faebe4"
+            200: "#f3d4c7"
+            300: "#e8b199"
+            400: "#db8c6d"
+            500: "#cc6e48"    # PRIMARY
+            600: "#b85736"
+            700: "#98452e"
+            800: "#7c3a2c"
+            900: "#663228"
+            950: "#351711"
+          # Sage/Earth green
+          earth:
+            50: "#f5faf3"
+            100: "#eaf5e7"
+            200: "#d4eacf"
+            300: "#b3daad"
+            400: "#8cc984"
+            500: "#6db562"    # SECONDARY
+            600: "#55984b"
+            700: "#44793d"
+            800: "#3a6335"
+            900: "#32512e"
+            950: "#192d16"
+          # Sand/Beige
+          sand:
+            50: "#fdfcf8"
+            100: "#faf8f0"
+            200: "#f3f0e0"
+            300: "#ebe5c7"
+            400: "#e0d7a2"
+            500: "#d2c778"
+            600: "#b8ad5a"
+            700: "#948b47"
+            800: "#77703c"
+            900: "#615b34"
+            950: "#322f1a"
+          # Warm charcoal
+          charcoal:
+            50: "#fafaf9"
+            100: "#f4f3f1"
+            200: "#e8e5e1"
+            300: "#d6d2cb"
+            400: "#b8b3aa"
+            500: "#9a9489"
+            600: "#7f786e"
+            700: "#676158"
+            800: "#56514a"
+            900: "#48433d"
+            950: "#25221e"
+        
+        semantic:
+          primary: "{color.primitive.clay.500}"
+          primaryHover: "{color.primitive.clay.600}"
+          primaryLight: "{color.primitive.clay.100}"
+          primaryDark: "{color.primitive.clay.700}"
+          
+          secondary: "{color.primitive.earth.500}"
+          secondaryHover: "{color.primitive.earth.600}"
+          secondaryLight: "{color.primitive.earth.100}"
+          
+          accent: "{color.primitive.sand.500}"
+          accentHover: "{color.primitive.sand.600}"
+          
+          success: "#16a34a"
+          warning: "#ca8a04"
+          error: "#dc2626"
+          info: "#2563eb"
+          
+          background: "{color.primitive.sand.50}"
+          surface: "#ffffff"
+          surfaceRaised: "{color.primitive.sand.50}"
+          
+          border: "{color.primitive.charcoal.200}"
+          borderStrong: "{color.primitive.charcoal.300}"
+          
+          textPrimary: "{color.primitive.charcoal.900}"
+          textSecondary: "{color.primitive.charcoal.600}"
+          textMuted: "{color.primitive.charcoal.400}"
+          textInverse: "#ffffff"
+          textLink: "{color.primitive.clay.600}"
+          
+          overlay: "rgba(37, 34, 30, 0.7)"
+      
+      radius:
+        sm: 10
+        md: 16
+        lg: 24
+        xl: 32
+        2xl: 48
+        # Very rounded, organic
+      
+      shadows:
+        sm: "0 2px 8px rgba(152, 69, 46, 0.08)"
+        md: "0 6px 20px rgba(152, 69, 46, 0.1), 0 3px 6px rgba(152, 69, 46, 0.06)"
+        lg: "0 16px 36px rgba(152, 69, 46, 0.12), 0 6px 12px rgba(152, 69, 46, 0.08)"
+        xl: "0 28px 56px rgba(152, 69, 46, 0.15), 0 12px 20px rgba(152, 69, 46, 0.1)"
+      
+      components:
+        button:
+          primary:
+            padding: "16px 32px"
+            fontWeight: 500
+            letterSpacing: "0.01em"
+          secondary:
+            borderWidth: 2
+            padding: "14px 30px"
+          ghost:
+            padding: "14px 24px"
+        card:
+          padding: 28
+          borderWidth: 0
+          imageRadius: 24
+        hero:
+          minHeight: "85vh"
+          paddingTop: 110
+          paddingBottom: 70
+        nav:
+          height: 76
+          backdropBlur: true
+          borderBottom: "none"
+
+    # ═══════════════════════════════════════════
+    # THEME 4: FUTURIST MINIMAL (michiinjapan.de)
+    # Sharp, experimental, portfolio/grid, Japanese aesthetic
+    # ═══════════════════════════════════════════
+    futurist-minimal:
+      name: "Futurist Minimal"
+      description: "Scharf, reduktiv, experimentell — für Portfolios, Kunst, Tech, Architecture, Design"
+      personality: ["sharp", "experimental", "precise", "reductive"]
+      bestFor: ["Künstler-Portfolios", "Architektur", "Design-Agenturen", "Tech-Startups", "Fotografie"]
+      
+      fonts:
+        heading: "Space Grotesk, sans-serif"       # Technical, distinctive
+        body: "IBM Plex Sans, sans-serif"         # Technical readability
+        accent: "Space Grotesk, sans-serif"
+        mono: "JetBrains Mono, monospace"
+      
+      color:
+        primitive:
+          # Sharp blue/cyan
+          electric:
+            50: "#f0fdfd"
+            100: "#ccfbfd"
+            200: "#99f6fa"
+            300: "#5eeaf4"
+            400: "#22d3ee"
+            500: "#06b6d4"    # PRIMARY
+            600: "#0891b2"
+            700: "#0e7490"
+            800: "#155e75"
+            900: "#164e63"
+            950: "#083344"
+          # Deep charcoal (not black)
+          graphite:
+            50: "#f8fafc"
+            100: "#f1f5f9"
+            200: "#e2e8f0"
+            300: "#cbd5e1"
+            400: "#94a3b8"
+            500: "#64748b"
+            600: "#475569"
+            700: "#334155"
+            800: "#1e293b"
+            900: "#0f172a"
+            950: "#020617"
+          # Pure white
+          pure:
+            50: "#ffffff"
+            100: "#fefefe"
+            200: "#fdfdfd"
+            300: "#fbfbfb"
+            400: "#f8f8f8"
+            500: "#f5f5f5"
+            600: "#eeeeee"
+            700: "#e0e0e0"
+            800: "#cccccc"
+            900: "#999999"
+            950: "#666666"
+          # Warm accent (sparingly)
+          amber:
+            50: "#fffbeb"
+            100: "#fef3c7"
+            200: "#fde68a"
+            300: "#fcd34d"
+            400: "#fbbf24"
+            500: "#f59e0b"
+            600: "#d97706"
+            700: "#b45309"
+            800: "#92400e"
+            900: "#78350f"
+            950: "#451a03"
+        
+        semantic:
+          primary: "{color.primitive.electric.500}"
+          primaryHover: "{color.primitive.electric.600}"
+          primaryLight: "{color.primitive.electric.100}"
+          primaryDark: "{color.primitive.electric.700}"
+          
+          secondary: "{color.primitive.graphite.700}"
+          secondaryHover: "{color.primitive.graphite.800}"
+          secondaryLight: "{color.primitive.graphite.200}"
+          
+          accent: "{color.primitive.amber.500}"
+          accentHover: "{color.primitive.amber.600}"
+          
+          success: "#10b981"
+          warning: "#f59e0b"
+          error: "#ef4444"
+          info: "#06b6d4"
+          
+          background: "{color.primitive.pure.50}"
+          surface: "#ffffff"
+          surfaceRaised: "#ffffff"
+          
+          border: "{color.primitive.graphite.200}"
+          borderStrong: "{color.primitive.graphite.300}"
+          
+          textPrimary: "{color.primitive.graphite.900}"
+          textSecondary: "{color.primitive.graphite.600}"
+          textMuted: "{color.primitive.graphite.400}"
+          textInverse: "#ffffff"
+          textLink: "{color.primitive.electric.600}"
+          
+          overlay: "rgba(15, 23, 42, 0.8)"
+      
+      radius:
+        sm: 2
+        md: 4
+        lg: 8
+        xl: 12
+        2xl: 16
+        # Sharp, minimal rounding
+      
+      shadows:
+        sm: "0 1px 2px rgba(15, 23, 42, 0.05)"
+        md: "0 4px 8px rgba(15, 23, 42, 0.08), 0 2px 4px rgba(15, 23, 42, 0.04)"
+        lg: "0 12px 24px rgba(15, 23, 42, 0.12), 0 4px 8px rgba(15, 23, 42, 0.08)"
+        xl: "0 24px 48px rgba(15, 23, 42, 0.16), 0 8px 16px rgba(15, 23, 42, 0.12)"
+        # Crisp, defined shadows
+      
+      components:
+        button:
+          primary:
+            padding: "12px 24px"
+            fontWeight: 600
+            letterSpacing: "0.04em"
+            textTransform: "uppercase"
+          secondary:
+            borderWidth: 1
+            padding: "11px 23px"
+          ghost:
+            padding: "11px 19px"
+        card:
+          padding: 20
+          borderWidth: 1
+          imageRadius: 4
+        hero:
+          minHeight: "100vh"
+          paddingTop: 140
+          paddingBottom: 100
+        nav:
+          height: 64
+          backdropBlur: true
+          borderBottom: "1px solid {color.primitive.graphite.100}"
+
+    # ═══════════════════════════════════════════
+    # THEME 5: QUIET LUXURY (Easy Pie / uploaded screenshot)
+    # Monochrome mauve, staggered layout, refined restraint
+    # ═══════════════════════════════════════════
+    quiet-luxury:
+      name: "Quiet Luxury"
+      description: "Monochrom, zurückhaltend, staggered layout — für Premium-Events, Boutique-Agenturen, Exklusiv"
+      personality: ["refined", "restrained", "sophisticated", "timeless"]
+      bestFor: ["High-End Events", "Boutique Hotels", "Luxus-Immobilien", "Exklusive Dienstleistungen"]
+      
+      fonts:
+        heading: "Fraunces, serif"                 # Elegant editorial serif
+        body: "Inter, sans-serif"                 # Neutral, perfect readability
+        accent: "Fraunces, serif"
+        mono: "JetBrains Mono, monospace"
+      
+      color:
+        primitive:
+          # Mauve/Dusty purple
+          mauve:
+            50: "#faf5fa"
+            100: "#f3e8f4"
+            200: "#e8d1ea"
+            300: "#d7abda"
+            400: "#c27fc9"
+            500: "#a85bb5"    # PRIMARY
+            600: "#91469a"
+            700: "#77387d"
+            800: "#623066"
+            900: "#512a54"
+            950: "#2e1430"
+          # Warm neutral
+          greige:
+            50: "#faf9f7"
+            100: "#f4f2ef"
+            200: "#e8e5e0"
+            300: "#d8d3cb"
+            400: "#bdb6ab"
+            500: "#a39a8c"
+            600: "#867e71"
+            700: "#6d655a"
+            800: "#5a534a"
+            900: "#4a443d"
+            950: "#27231e"
+          # Soft white
+          ivory:
+            50: "#fefefe"
+            100: "#fdfcfb"
+            200: "#faf7f4"
+            300: "#f5f0eb"
+            400: "#ebe3da"
+            500: "#dfd5c8"
+            600: "#c4b8a8"
+            700: "#a39886"
+            800: "#867d6d"
+            900: "#6e6657"
+            950: "#3a342b"
+        
+        semantic:
+          primary: "{color.primitive.mauve.500}"
+          primaryHover: "{color.primitive.mauve.600}"
+          primaryLight: "{color.primitive.mauve.100}"
+          primaryDark: "{color.primitive.mauve.700}"
+          
+          secondary: "{color.primitive.greige.600}"
+          secondaryHover: "{color.primitive.greige.700}"
+          secondaryLight: "{color.primitive.greige.100}"
+          
+          accent: "{color.primitive.mauve.300}"
+          accentHover: "{color.primitive.mauve.400}"
+          
+          success: "#16a34a"
+          warning: "#ca8a04"
+          error: "#dc2626"
+          info: "#2563eb"
+          
+          background: "{color.primitive.ivory.50}"
+          surface: "#ffffff"
+          surfaceRaised: "#ffffff"
+          
+          border: "{color.primitive.greige.200}"
+          borderStrong: "{color.primitive.greige.300}"
+          
+          textPrimary: "{color.primitive.greige.900}"
+          textSecondary: "{color.primitive.greige.600}"
+          textMuted: "{color.primitive.greige.400}"
+          textInverse: "#ffffff"
+          textLink: "{color.primitive.mauve.600}"
+          
+          overlay: "rgba(39, 35, 30, 0.6)"
+      
+      radius:
+        sm: 8
+        md: 16
+        lg: 24
+        xl: 32
+        2xl: 48
+        # Generous rounding on images, subtle on UI
+      
+      shadows:
+        sm: "0 1px 3px rgba(105, 38, 82, 0.06)"
+        md: "0 4px 16px rgba(105, 38, 82, 0.08), 0 2px 4px rgba(105, 38, 82, 0.04)"
+        lg: "0 16px 32px rgba(105, 38, 82, 0.1), 0 6px 12px rgba(105, 38, 82, 0.06)"
+        xl: "0 28px 56px rgba(105, 38, 82, 0.12), 0 10px 20px rgba(105, 38, 82, 0.08)"
+      
+      components:
+        button:
+          primary:
+            padding: "14px 32px"
+            fontWeight: 500
+            letterSpacing: "0.03em"
+            textTransform: "none"
+          secondary:
+            borderWidth: 1.5
+            padding: "12.5px 30.5px"
+          ghost:
+            padding: "12px 24px"
+        card:
+          padding: 32
+          borderWidth: 1
+          imageRadius: 24
+        hero:
+          minHeight: "90vh"
+          paddingTop: 120
+          paddingBottom: 80
+        nav:
+          height: 88
+          backdropBlur: true
+          borderBottom: "1px solid {color.primitive.greige.100}"
+
+
+# ═══════════════════════════════════════════
+# COMPONENT SPECS (shared structure, theme values applied)
+# ═══════════════════════════════════════════
+components:
+  button:
+    heights:
+      sm: 36
+      md: 44
+      lg: 52
+      xl: 60
+    minWidth: 88
+    focusRing: "0 0 0 3px {color.primary} / 0.4"
+    disabledOpacity: 0.5
+  
+  input:
+    height: 44
+    padding: "12px 16px"
+    borderWidth: 1
+    placeholderColor: "{color.textMuted}"
+    errorColor: "{color.error}"
+    successColor: "{color.success}"
+  
+  card:
+    padding: 24
+    borderWidth: 1
+    gap: 16
+    imageAspectRatio: "4/3"
+  
+  badge:
+    padding: "4px 10px"
+    fontSize: 12
+    fontWeight: 500
+    radius: "full"
+  
+  tooltip:
+    maxWidth: 280
+    padding: "8px 12px"
+    fontSize: 13
+    gap: 8
+  
+  modal:
+    maxWidth:
+      sm: 400
+      md: 560
+      lg: 720
+      xl: 960
+    padding: 24
+    radius: 16
+    backdropBlur: 4
+  
+  toast:
+    minWidth: 280
+    maxWidth: 420
+    padding: "14px 16px"
+    gap: 12
+    borderRadius: 10
+  
+  table:
+    headerHeight: 48
+    rowHeight: 52
+    cellPadding: "12px 16px"
+    stickyHeader: true
+
+# ═══════════════════════════════════════════
+# MOTION SYSTEM
+# ═══════════════════════════════════════════
+motion:
+  durations:
+    instant: 0
+    fast: 100
+    normal: 200
+    slow: 300
+    slower: 400
+    slowest: 500
+  easings:
+    easeOut: "cubic-bezier(0.16, 1, 0.3, 1)"
+    easeIn: "cubic-bezier(0.55, 0, 1, 0.45)"
+    easeInOut: "cubic-bezier(0.65, 0, 0.35, 1)"
+    spring: "cubic-bezier(0.34, 1.56, 0.64, 1)"
+    sharp: "cubic-bezier(0.4, 0, 0.2, 1)"
+  stagger: 50  # ms per item
+  reducedMotion: "prefers-reduced-motion: reduce"
+
+# ═══════════════════════════════════════════
+# DARK MODE OVERRIDES (per theme)
+# ═══════════════════════════════════════════
+darkMode:
+  strategy: "class"  # .dark on html
+  rules:
+    # Universal dark mode adjustments
+    background: "{color.primitive.neutral.950}"
+    surface: "{color.primitive.neutral.900}"
+    surfaceRaised: "{color.primitive.neutral.800}"
+    border: "{color.primitive.neutral.700}"
+    borderStrong: "{color.primitive.neutral.600}"
+    textPrimary: "{color.primitive.neutral.50}"
+    textSecondary: "{color.primitive.neutral.300}"
+    textMuted: "{color.primitive.neutral.500}"
+    textInverse: "{color.primitive.neutral.950}"
+    overlay: "rgba(0,0,0,0.7)"
+    # Primary lightens on dark
+    primary: "{color.primitive.primary.400}"
+    primaryHover: "{color.primitive.primary.300}"
+    primaryLight: "{color.primitive.primary.900} / 0.3"
+    # Shadows become borders/glows
+    shadows:
+      sm: "0 1px 2px rgba(0,0,0,0.3)"
+      md: "0 4px 6px rgba(0,0,0,0.4), 0 0 1px {color.primary} / 0.2"
+      lg: "0 10px 15px rgba(0,0,0,0.5), 0 0 1px {color.primary} / 0.15"
+      xl: "0 20px 25px rgba(0,0,0,0.6), 0 0 1px {color.primary} / 0.1"
+
+# ═══════════════════════════════════════════
+# ACCESSIBILITY DEFAULTS
+# ═══════════════════════════════════════════
+a11y:
+  contrast:
+    aa: 4.5
+    aaLarge: 3
+    aaa: 7
+    aaaLarge: 4.5
+  focusVisible: true
+  skipLink: true
+  reducedMotion: true
+  minTouchTarget: 44
