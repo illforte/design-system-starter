@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="editorial-luxury">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -678,7 +678,7 @@
     }
   </style>
 </head>
-<body data-theme="editorial-luxury">
+<body>
   <!-- Theme Switcher -->
   <div class="theme-switcher" role="radiogroup" aria-label="Design Theme">
     <button class="theme-btn active" data-theme="editorial-luxury" role="radio" aria-checked="true">Editorial Luxury</button>
@@ -1057,9 +1057,14 @@
   </div>
 
   <script>
+    // Safe storage (works even in sandboxed previews where localStorage throws)
+    const storage = {
+      get(key) { try { return localStorage.getItem(key); } catch (e) { return null; } },
+      set(key, value) { try { localStorage.setItem(key, value); } catch (e) { /* ignore */ } }
+    };
+
     // Theme Switcher Logic
     const themeButtons = document.querySelectorAll('.theme-btn');
-    const body = document.body;
     const themeHeader = document.getElementById('themeHeader');
     const themeBadge = document.getElementById('themeBadge');
     const themeName = document.getElementById('themeName');
@@ -1094,19 +1099,19 @@
     };
 
     themeButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const theme = btn.dataset.theme;
-        
-        // Update active state
-        themeButtons.forEach(b => {
-          b.classList.remove('active');
-          b.setAttribute('aria-checked', 'false');
-        });
-        btn.classList.add('active');
-        btn.setAttribute('aria-checked', 'true');
-        
-        // Apply theme
-        body.dataset.theme = theme;
+          btn.addEventListener('click', () => {
+            const theme = btn.dataset.theme;
+
+            // Update active state
+            themeButtons.forEach(b => {
+              b.classList.remove('active');
+              b.setAttribute('aria-checked', 'false');
+            });
+            btn.classList.add('active');
+            btn.setAttribute('aria-checked', 'true');
+
+            // Apply theme to documentElement (html) for reliable CSS variable inheritance
+            document.documentElement.dataset.theme = theme;
         
         // Update header info
         const info = themeInfo[theme];
@@ -1115,7 +1120,7 @@
         themeDescription.textContent = info.desc;
         
         // Save preference
-        localStorage.setItem('design-theme', theme);
+        storage.set('design-theme', theme);
       });
     });
 
@@ -1124,27 +1129,27 @@
     const darkToggleText = document.getElementById('darkToggleText');
     
     function updateDarkToggle() {
-      const isDark = body.classList.contains('dark');
+      const isDark = document.documentElement.classList.contains('dark');
       darkToggleText.textContent = isDark ? '☀️ Light' : '🌙 Dark';
       darkToggle.setAttribute('aria-pressed', isDark);
     }
 
     darkToggle.addEventListener('click', () => {
-      body.classList.toggle('dark');
+      document.documentElement.classList.toggle('dark');
       updateDarkToggle();
-      localStorage.setItem('dark-mode', body.classList.contains('dark'));
+      storage.set('dark-mode', document.documentElement.classList.contains('dark'));
     });
 
     // Restore preferences
-    const savedTheme = localStorage.getItem('design-theme');
+    const savedTheme = storage.get('design-theme');
     if (savedTheme && themeInfo[savedTheme]) {
-      const btn = document.querySelector(`[data-theme="${savedTheme}"]`);
+      const btn = document.querySelector(`.theme-btn[data-theme="${savedTheme}"]`);
       if (btn) btn.click();
     }
 
-    const savedDark = localStorage.getItem('dark-mode');
+    const savedDark = storage.get('dark-mode');
     if (savedDark === 'true') {
-      body.classList.add('dark');
+      document.documentElement.classList.add('dark');
       updateDarkToggle();
     }
 
