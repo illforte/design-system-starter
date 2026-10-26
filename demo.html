@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Design System Starter — 5 Themes Demo</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Design System Starter — 5 Themes</title>
+  <meta name="description" content="Design System Starter: 5 Persönlichkeit-Themes (Editorial Luxury, Warm Approachable, Organic Soft, Futurist Minimal, Quiet Luxury) auf 1 Fundament — Tokens, Komponenten, Dark Mode.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fefef9">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E🎨%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Satoshi:wght@400;500;600;700&family=Source+Serif+Pro:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=Fraunces:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     /* CSS Variables for each theme - generated from design-tokens.yaml */
     :root {
@@ -54,6 +57,7 @@
       
       --color-overlay: rgba(28, 25, 23, 0.6);
       
+      --radius-none: 0px;
       --radius-sm: 6px;
       --radius-md: 10px;
       --radius-lg: 16px;
@@ -111,6 +115,7 @@
       
       --color-overlay: rgba(40, 37, 31, 0.6);
       
+      --radius-none: 0px;
       --radius-sm: 8px;
       --radius-md: 12px;
       --radius-lg: 16px;
@@ -132,7 +137,7 @@
        THEME 3: ORGANIC SOFT
        ═══════════════════════════════════════════ */
     [data-theme="organic-soft"] {
-      --font-heading: "Satoshi", sans-serif;
+      --font-heading: "Manrope", sans-serif;
       --font-body: "Source Serif Pro", serif;
       --font-mono: "JetBrains Mono", monospace;
       
@@ -168,6 +173,7 @@
       
       --color-overlay: rgba(37, 34, 30, 0.7);
       
+      --radius-none: 0px;
       --radius-sm: 10px;
       --radius-md: 16px;
       --radius-lg: 24px;
@@ -225,6 +231,7 @@
       
       --color-overlay: rgba(15, 23, 42, 0.8);
       
+      --radius-none: 0px;
       --radius-sm: 2px;
       --radius-md: 4px;
       --radius-lg: 8px;
@@ -282,6 +289,7 @@
       
       --color-overlay: rgba(39, 35, 30, 0.6);
       
+      --radius-none: 0px;
       --radius-sm: 8px;
       --radius-md: 16px;
       --radius-lg: 24px;
@@ -463,6 +471,132 @@
     }
     .card:hover .card-image img { transform: scale(1.02); }
 
+    /* ── Per-theme artwork (pure CSS, no images, no JS) ─────────────
+       Each theme gets a distinct visual character for header + cards.
+       All built from theme tokens, so Dark Mode follows automatically. */
+    .card-art {
+      position: relative;
+      border-radius: var(--radius-xl);
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background:
+        radial-gradient(120% 90% at 85% 10%, color-mix(in srgb, var(--color-secondary-light) 70%, transparent) 0%, transparent 55%),
+        linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-surface) 60%, color-mix(in srgb, var(--color-accent) 18%, var(--color-surface)) 100%);
+      transition: transform var(--transition-slow);
+    }
+    .card:hover .card-art { transform: scale(1.02); }
+    .card-art-1::after {
+      content: '♪';
+      position: absolute;
+      right: 14%;
+      bottom: 8%;
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 8vw, 5rem);
+      line-height: 1;
+      color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+      transform: rotate(-8deg);
+    }
+    .card-art-2 {
+      background:
+        radial-gradient(120% 90% at 15% 90%, color-mix(in srgb, var(--color-primary-light) 70%, transparent) 0%, transparent 55%),
+        linear-gradient(315deg, var(--color-secondary-light) 0%, var(--color-surface) 60%, color-mix(in srgb, var(--color-accent) 18%, var(--color-surface)) 100%);
+    }
+    .card-art-2::after {
+      content: '♪';
+      position: absolute;
+      left: 14%;
+      bottom: 8%;
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 8vw, 5rem);
+      line-height: 1;
+      color: color-mix(in srgb, var(--color-secondary) 45%, transparent);
+      transform: rotate(8deg);
+    }
+    .card-art-3 {
+      background:
+        radial-gradient(120% 90% at 85% 90%, color-mix(in srgb, var(--color-accent) 30%, transparent) 0%, transparent 55%),
+        linear-gradient(225deg, var(--color-primary-light) 0%, var(--color-surface) 60%, var(--color-secondary-light) 100%);
+    }
+    .card-art-3::after {
+      content: '♫';
+      position: absolute;
+      right: 14%;
+      bottom: 8%;
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 8vw, 5rem);
+      line-height: 1;
+      color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+      transform: rotate(-4deg);
+    }
+
+    /* Header art: one decorative pattern per personality */
+    .theme-header::after {
+      content: '';
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 55%;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    [data-theme="editorial-luxury"] .theme-header::before {
+      background:
+        radial-gradient(60% 80% at 15% 20%, color-mix(in srgb, var(--color-primary-light) 80%, transparent) 0%, transparent 60%),
+        radial-gradient(50% 70% at 85% 80%, color-mix(in srgb, var(--color-accent) 22%, transparent) 0%, transparent 60%);
+    }
+    [data-theme="editorial-luxury"] .theme-header::after {
+      background:
+        repeating-linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 14%, transparent) 0 1px, transparent 1px 56px);
+      mask-image: linear-gradient(180deg, transparent, #000 70%);
+      -webkit-mask-image: linear-gradient(180deg, transparent, #000 70%);
+    }
+    [data-theme="warm-approachable"] .theme-header::before {
+      background:
+        radial-gradient(70% 90% at 20% 10%, color-mix(in srgb, var(--color-primary-light) 90%, transparent) 0%, transparent 65%),
+        radial-gradient(60% 80% at 85% 90%, color-mix(in srgb, var(--color-secondary-light) 80%, transparent) 0%, transparent 60%);
+    }
+    [data-theme="warm-approachable"] .theme-header::after {
+      background: radial-gradient(circle 26px at 50% 120%, color-mix(in srgb, var(--color-accent) 26%, transparent) 0 60%, transparent 61%);
+      background-size: 120px 90px;
+      background-position: bottom center;
+      mask-image: linear-gradient(180deg, transparent, #000);
+      -webkit-mask-image: linear-gradient(180deg, transparent, #000);
+    }
+    [data-theme="organic-soft"] .theme-header::before {
+      background:
+        radial-gradient(55% 55% at 12% 85%, color-mix(in srgb, var(--color-primary-light) 85%, transparent) 0%, transparent 60%),
+        radial-gradient(45% 45% at 88% 15%, color-mix(in srgb, var(--color-secondary-light) 85%, transparent) 0%, transparent 60%),
+        radial-gradient(35% 35% at 70% 75%, color-mix(in srgb, var(--color-accent) 20%, transparent) 0%, transparent 60%);
+    }
+    [data-theme="organic-soft"] .theme-header::after {
+      background:
+        radial-gradient(140px 60px at 18% 100%, transparent 55%, color-mix(in srgb, var(--color-primary) 12%, transparent) 56% 58%, transparent 59%),
+        radial-gradient(100px 46px at 62% 100%, transparent 55%, color-mix(in srgb, var(--color-secondary) 14%, transparent) 56% 58%, transparent 59%),
+        radial-gradient(160px 70px at 90% 100%, transparent 55%, color-mix(in srgb, var(--color-accent) 16%, transparent) 56% 58%, transparent 59%);
+      mask-image: linear-gradient(180deg, transparent, #000);
+      -webkit-mask-image: linear-gradient(180deg, transparent, #000);
+    }
+    [data-theme="futurist-minimal"] .theme-header::before {
+      background:
+        radial-gradient(50% 60% at 85% 20%, color-mix(in srgb, var(--color-primary) 10%, transparent) 0%, transparent 60%);
+    }
+    [data-theme="futurist-minimal"] .theme-header::after {
+      background:
+        repeating-linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 16%, transparent) 0 1px, transparent 1px 48px),
+        repeating-linear-gradient(0deg, color-mix(in srgb, var(--color-primary) 8%, transparent) 0 1px, transparent 1px 48px);
+      mask-image: linear-gradient(180deg, transparent 30%, #000);
+      -webkit-mask-image: linear-gradient(180deg, transparent 30%, #000);
+    }
+    [data-theme="quiet-luxury"] .theme-header::before {
+      background:
+        radial-gradient(80% 100% at 50% 0%, color-mix(in srgb, var(--color-primary-light) 75%, transparent) 0%, transparent 70%);
+    }
+    [data-theme="quiet-luxury"] .theme-header::after {
+      background:
+        linear-gradient(90deg, transparent calc(50% - 0.5px), color-mix(in srgb, var(--color-primary) 22%, transparent) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px));
+      mask-image: linear-gradient(180deg, transparent, #000 60%);
+      -webkit-mask-image: linear-gradient(180deg, transparent, #000 60%);
+    }
+
     .input {
       width: 100%;
       height: 44px;
@@ -485,6 +619,20 @@
     .input:disabled { background-color: var(--color-border); color: var(--color-text-muted); cursor: not-allowed; }
     .input-error { border-color: var(--color-error); }
     .input-error:focus { box-shadow: 0 0 0 3px var(--color-error) / 0.2; }
+
+    textarea.input { height: auto; min-height: 88px; padding: 0.75rem 1rem; resize: vertical; line-height: 1.5; }
+
+    select.input {
+      appearance: none;
+      -webkit-appearance: none;
+      padding-right: 2.5rem;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 1rem;
+      cursor: pointer;
+    }
+    select.input:disabled { cursor: not-allowed; }
 
     .label {
       display: block;
@@ -526,20 +674,28 @@
       .grid-responsive { grid-template-columns: repeat(3, 1fr); }
     }
 
+    /* Theme toolbar (sticky) */
+    .theme-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 0.75rem clamp(1rem, 4vw, 2rem);
+      background: color-mix(in srgb, var(--color-surface-raised) 85%, transparent);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+    }
+
     /* Theme switcher */
     .theme-switcher {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      z-index: 100;
       display: flex;
       gap: 0.5rem;
       flex-wrap: wrap;
-      background: var(--color-surface-raised);
-      padding: 0.75rem;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--color-border);
-      box-shadow: var(--shadow-lg);
     }
     .theme-btn {
       padding: 0.5rem 1rem;
@@ -561,10 +717,6 @@
     }
 
     .dark-toggle {
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      z-index: 100;
       padding: 0.5rem 1rem;
       font-size: 0.75rem;
       font-weight: 500;
@@ -574,19 +726,33 @@
       color: var(--color-text-primary);
       cursor: pointer;
       transition: all var(--transition-fast);
+      font-family: var(--font-heading);
     }
     .dark-toggle:hover { border-color: var(--color-primary); color: var(--color-primary); }
 
     /* Demo layout */
     .theme-demo {
       min-height: 100vh;
-      padding-top: 5rem;
     }
     .theme-header {
       text-align: center;
       padding: 3rem 1rem;
       background: linear-gradient(180deg, var(--color-background), var(--color-primary-light));
       border-bottom: 1px solid var(--color-border);
+      position: relative;
+      overflow: hidden;
+    }
+    .theme-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, var(--color-primary-light) 0%, transparent 70%);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .theme-header .container {
+      position: relative;
+      z-index: 1;
     }
     .theme-header h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; }
     .theme-header p { font-size: 1.125rem; color: var(--color-text-secondary); max-width: 600px; margin: 0 auto; }
@@ -672,25 +838,42 @@
 
     /* Print styles */
     @media print {
-      .theme-switcher, .dark-toggle { display: none; }
-      [data-theme] { background: white !important; color: black !important; }
-      .card { box-shadow: none; border: 1px solid #ccc; }
+      .theme-toolbar { display: none; }
+      [data-theme="editorial-luxury"], [data-theme="warm-approachable"], [data-theme="organic-soft"], [data-theme="futurist-minimal"], [data-theme="quiet-luxury"] {
+        background: white !important; color: black !important;
+      }
+      .card, .component-card { box-shadow: none !important; border: 1px solid #ccc !important; break-inside: avoid; }
+      .theme-header::before, .theme-header::after { display: none; }
+      .card-art { background: #f5f5f5 !important; }
+      a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.75em; color: #555; }
+    }
+
+    /* Mobile: tighter toolbar, full-width dark toggle */
+    @media (max-width: 639px) {
+      .theme-toolbar {
+        padding: 0.6rem 1rem;
+        align-items: stretch;
+      }
+      .theme-switcher { width: 100%; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 2px; scrollbar-width: thin; }
+      .theme-btn { white-space: nowrap; flex: 1 0 auto; }
+      .dark-toggle { align-self: stretch; }
     }
   </style>
 </head>
 <body>
-  <!-- Theme Switcher -->
-  <div class="theme-switcher" role="radiogroup" aria-label="Design Theme">
-    <button class="theme-btn active" data-theme="editorial-luxury" role="radio" aria-checked="true">Editorial Luxury</button>
-    <button class="theme-btn" data-theme="warm-approachable" role="radio" aria-checked="false">Warm Approachable</button>
-    <button class="theme-btn" data-theme="organic-soft" role="radio" aria-checked="false">Organic Soft</button>
-    <button class="theme-btn" data-theme="futurist-minimal" role="radio" aria-checked="false">Futurist Minimal</button>
-    <button class="theme-btn" data-theme="quiet-luxury" role="radio" aria-checked="false">Quiet Luxury</button>
+  <!-- Sticky control bar -->
+  <div class="theme-toolbar" role="region" aria-label="Design-Themen wählen">
+    <div class="theme-switcher" role="radiogroup" aria-label="Design Theme">
+      <button class="theme-btn active" data-theme="editorial-luxury" role="radio" aria-checked="true">Editorial Luxury</button>
+      <button class="theme-btn" data-theme="warm-approachable" role="radio" aria-checked="false">Warm Approachable</button>
+      <button class="theme-btn" data-theme="organic-soft" role="radio" aria-checked="false">Organic Soft</button>
+      <button class="theme-btn" data-theme="futurist-minimal" role="radio" aria-checked="false">Futurist Minimal</button>
+      <button class="theme-btn" data-theme="quiet-luxury" role="radio" aria-checked="false">Quiet Luxury</button>
+    </div>
+    <button class="dark-toggle" id="darkToggle" aria-pressed="false">
+      <span id="darkToggleText">🌙 Dark</span>
+    </button>
   </div>
-
-  <button class="dark-toggle" id="darkToggle" aria-pressed="false">
-    <span id="darkToggleText">🌙 Dark</span>
-  </button>
 
   <!-- Theme Demo -->
   <div class="theme-demo">
@@ -848,67 +1031,34 @@
     <section class="demo-section section">
       <div class="container">
         <h2>Cards</h2>
-        <div class="grid-responsive">
-          <article class="card card-interactive">
-            <div class="card-image">
-              <svg viewBox="0 0 400 300" fill="none" style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light));">
-                <rect width="400" height="300" fill="url(#grad1)"/>
-                <defs>
-                  <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:var(--color-primary-light)"/>
-                    <stop offset="100%" style="stop-color:var(--color-secondary-light)"/>
-                  </linearGradient>
-                </defs>
-                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="var(--font-heading)" font-size="24" fill="var(--color-primary)" opacity="0.5">Bild</text>
-              </svg>
-            </div>
-            <div style="margin-top: 1rem;">
-              <span class="badge">Hochzeit</span>
-              <h3 style="margin: 0.75rem 0 0.5rem;">Trauung & Agape</h3>
-              <p style="color: var(--color-text-secondary); font-size: 0.9375rem; margin: 0;">Emotionale Live-Musik für euren schönsten Tag. Solo, Duo oder mit Band.</p>
-            </div>
-          </article>
+        <div class="component-grid">
+                  <article class="card card-interactive">
+                    <div class="card-art card-art-1" aria-hidden="true"></div>
+                    <div style="margin-top: 1rem;">
+                      <span class="badge">Hochzeit</span>
+                      <h3 style="margin: 0.75rem 0 0.5rem;">Trauung & Agape</h3>
+                      <p style="color: var(--color-text-secondary); font-size: 0.9375rem; margin: 0;">Emotionale Live-Musik für euren schönsten Tag. Solo, Duo oder mit Band.</p>
+                    </div>
+                  </article>
 
-          <article class="card card-interactive">
-            <div class="card-image">
-              <svg viewBox="0 0 400 300" fill="none" style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--color-secondary-light), var(--color-accent));">
-                <rect width="400" height="300" fill="url(#grad2)"/>
-                <defs>
-                  <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:var(--color-secondary-light)"/>
-                    <stop offset="100%" style="stop-color:var(--color-accent)"/>
-                  </linearGradient>
-                </defs>
-                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="var(--font-heading)" font-size="24" fill="var(--color-secondary)" opacity="0.5">Bild</text>
-              </svg>
-            </div>
-            <div style="margin-top: 1rem;">
-              <span class="badge" style="background: var(--color-secondary-light); color: var(--color-secondary-dark, var(--color-secondary-hover));">Event</span>
-              <h3 style="margin: 0.75rem 0 0.5rem;">Firmenevents</h3>
-              <p style="color: var(--color-text-secondary); font-size: 0.9375rem; margin: 0;">Die passende musikalische Begleitung für eure Feier — dezent im Hintergrund oder als Highlight.</p>
-            </div>
-          </article>
+                  <article class="card card-interactive">
+                    <div class="card-art card-art-2" aria-hidden="true"></div>
+                    <div style="margin-top: 1rem;">
+                      <span class="badge" style="background: var(--color-secondary-light); color: var(--color-secondary-hover);">Event</span>
+                      <h3 style="margin: 0.75rem 0 0.5rem;">Firmenevents</h3>
+                      <p style="color: var(--color-text-secondary); font-size: 0.9375rem; margin: 0;">Die passende musikalische Begleitung für eure Feier — dezent im Hintergrund oder als Highlight.</p>
+                    </div>
+                  </article>
 
-          <article class="card card-interactive">
-            <div class="card-image">
-              <svg viewBox="0 0 400 300" fill="none" style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--color-accent), var(--color-primary-light));">
-                <rect width="400" height="300" fill="url(#grad3)"/>
-                <defs>
-                  <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:var(--color-accent)"/>
-                    <stop offset="100%" style="stop-color:var(--color-primary-light)"/>
-                  </linearGradient>
-                </defs>
-                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="var(--font-heading)" font-size="24" fill="var(--color-primary)" opacity="0.5">Bild</text>
-              </svg>
-            </div>
-            <div style="margin-top: 1rem;">
-              <span class="badge" style="background: var(--color-accent); color: var(--color-text-primary);">Privat</span>
-              <h3 style="margin: 0.75rem 0 0.5rem;">Private Feiern</h3>
-              <p style="color: var(--color-text-secondary); font-size: 0.9375rem; margin: 0;">Geburtstage, Jubiläen, Gartenpartys — Live-Musik, die eure Gäste begeistert.</p>
-            </div>
-          </article>
-        </div>
+                  <article class="card card-interactive">
+                    <div class="card-art card-art-3" aria-hidden="true"></div>
+                    <div style="margin-top: 1rem;">
+                      <span class="badge" style="background: var(--color-accent); color: var(--color-text-primary);">Privat</span>
+                      <h3 style="margin: 0.75rem 0 0.5rem;">Private Feiern</h3>
+                      <p style="color: var(--color-text-secondary); font-size: 0.9375rem; margin: 0;">Geburtstage, Jubiläen, Gartenpartys — Live-Musik, die eure Gäste begeistert.</p>
+                    </div>
+                  </article>
+                </div>
       </div>
     </section>
 
@@ -937,7 +1087,7 @@
       <div class="container">
         <h2>Hero Section</h2>
         <div class="component-card" style="padding: 3rem; text-align: center; background: linear-gradient(180deg, var(--color-background), var(--color-primary-light)); border-radius: var(--radius-xl);">
-          <span class="badge" style="margin-bottom: 1.5rem; font-size: 0.875rem; padding: 0.5rem 1.25rem;">Neu: Sommer 2025 Termine</span>
+          <span class="badge" style="margin-bottom: 1.5rem; font-size: 0.875rem; padding: 0.5rem 1.25rem;">Neu: Sommer 2026 Termine</span>
           <h1 style="font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto;">Live-Musik, die <br><span style="color: var(--color-primary);">berührt</span></h1>
           <p style="font-size: 1.25rem; color: var(--color-text-secondary); max-width: 600px; margin: 0 auto 2rem;">Professionelle Sänger:innen & Musiker:innen für Hochzeiten, Events & Firmenfeiern. Individuell, live, unvergesslich.</p>
           <div class="btn-group" style="justify-content: center;">
@@ -1063,7 +1213,7 @@
       set(key, value) { try { localStorage.setItem(key, value); } catch (e) { /* ignore */ } }
     };
 
-    // Theme Switcher Logic
+    // (per-theme art is rendered with pure CSS — see the style block above, no JS injection)
     const themeButtons = document.querySelectorAll('.theme-btn');
     const themeHeader = document.getElementById('themeHeader');
     const themeBadge = document.getElementById('themeBadge');
@@ -1099,40 +1249,40 @@
     };
 
     themeButtons.forEach(btn => {
-          btn.addEventListener('click', () => {
-            const theme = btn.dataset.theme;
+              btn.addEventListener('click', () => {
+                const theme = btn.dataset.theme;
 
-            // Update active state
-            themeButtons.forEach(b => {
-              b.classList.remove('active');
-              b.setAttribute('aria-checked', 'false');
-            });
-            btn.classList.add('active');
-            btn.setAttribute('aria-checked', 'true');
+                // Update active state
+                themeButtons.forEach(b => {
+                  b.classList.remove('active');
+                  b.setAttribute('aria-checked', 'false');
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-checked', 'true');
 
-            // Apply theme to documentElement (html) for reliable CSS variable inheritance
-            document.documentElement.dataset.theme = theme;
-        
-        // Update header info
-        const info = themeInfo[theme];
-        themeBadge.textContent = info.badge;
-        themeName.textContent = info.name;
-        themeDescription.textContent = info.desc;
-        
-        // Save preference
-        storage.set('design-theme', theme);
-      });
-    });
+                // Apply theme to documentElement (html) for reliable CSS variable inheritance
+                document.documentElement.dataset.theme = theme;
+
+                // Update header info
+                const info = themeInfo[theme];
+                themeBadge.textContent = info.badge;
+                themeName.textContent = info.name;
+                themeDescription.textContent = info.desc;
+
+                // Save preference
+                storage.set('design-theme', theme);
+              });
+        });
 
     // Dark Mode Toggle
-    const darkToggle = document.getElementById('darkToggle');
-    const darkToggleText = document.getElementById('darkToggleText');
-    
-    function updateDarkToggle() {
-      const isDark = document.documentElement.classList.contains('dark');
-      darkToggleText.textContent = isDark ? '☀️ Light' : '🌙 Dark';
-      darkToggle.setAttribute('aria-pressed', isDark);
-    }
+        const darkToggle = document.getElementById('darkToggle');
+        const darkToggleText = document.getElementById('darkToggleText');
+
+        function updateDarkToggle() {
+          const isDark = document.documentElement.classList.contains('dark');
+          darkToggleText.textContent = isDark ? '☀️ Light' : '🌙 Dark';
+          darkToggle.setAttribute('aria-pressed', isDark);
+        }
 
     darkToggle.addEventListener('click', () => {
       document.documentElement.classList.toggle('dark');

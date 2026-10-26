@@ -405,9 +405,9 @@ tokens:
       bestFor: ["Yoga/Meditation", "Ganzheitliche Gesundheit", "Akustik-Musik", "Natur-Produkte", "Coaching"]
       
       fonts:
-        heading: "Satoshi, sans-serif"             # Warm geometric, variable
-        body: "Source Serif Pro, serif"           # Humanist serif for reading
-        accent: "Satoshi, sans-serif"
+        heading: "Manrope, sans-serif"              # Warm geometric, variable (Google Fonts)
+        body: "Source Serif Pro, serif"             # Humanist serif for reading
+        accent: "Manrope, sans-serif"
         mono: "JetBrains Mono, monospace"
       
       color:
